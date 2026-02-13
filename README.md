@@ -32,7 +32,7 @@ Using environment variables is important because it separates the application co
 
 ---
 
-## Challenges and Learnings 
+## Technical error ( order-service does not work)
 
 Because of Azure vCPU and Public IP limits on the Azure student account (no 1-vCPU VM sizes were available in any region), the Storefront and Order Service run on the same VM. They are still treated as separate microservices, with different repositories, independent configurations, and separate ports to simulate a distributed environment.
 
