@@ -18,7 +18,7 @@
 
 ### What challenges did you encounter when configuring environment variables in the GitHub Actions workflow?
 
-The biggest challenge was syncing the environment variables between GitHub and the build process. Because Static Web Apps integrate the API URLs into the code during the build, any typo or missing secret in the GitHub .yml file would cause the frontend to break. I had to carefully ensure that the names in GitHub exactly match the variables in my code. It required constant checking of the GitHub Action logs to confirm the values were being injected correctly before the app was deployed to Azure.
+The biggest challenge was syncing the environment variables between GitHub and the build process. Because Static Web Apps embed API URLs in the code during the build, any typo or missing secret in the GitHub .yml file would cause the frontend to break. I had to carefully ensure that the names in GitHub exactly match the variables in my code. It required constant checking of the GitHub Action logs to confirm the values were being injected correctly before the app was deployed to Azure.
 
 
 ### How does deploying microservices on Azure Web App Service differ from running them locally?
@@ -28,14 +28,13 @@ Running microservices locally uses a developer's own hardware for development an
 
 ### Why is it important to use environment variables for configurations in a cloud environment?
 
-Using environment variables is important because it separates the application code from the configuration. By removing hardcoded secrets like database credentials from the source code, the risk of exposing sensitive data is significantly reduced. It also makes the application portable. The same code can be deployed to different environments just by changing the external variables, rather than manually rewriting lines of code for every new deployment.
+Using environment variables is important because it separates the application code from the configuration. By removing hardcoded secrets like database credentials from the source code, the risk of exposing sensitive data is significantly reduced. It also makes the application portable. The same code can be deployed to different environments simply by changing external variables, rather than manually rewriting code for every new deployment.
 
 ---
 
 ## Technical error ( order-service does not work)
 
-Because of Azure vCPU and Public IP limits on the Azure student account (no 1-vCPU VM sizes were available in any region), the Storefront and Order Service run on the same VM. They are still treated as separate microservices, with different repositories, independent configurations, and separate ports to simulate a distributed environment.
-
+The application architecture is fully deployed on Azure, and all individual components (Static Web App, Web App Services, and RabbitMQ VM) are running. However, the Order Service returns a 500 Internal Server Error when it tries to communicate with RabbitMQ. I verified that Azure’s Network Security Group (NSG) has Port 5672 open, and I used the Kudu console to confirm that the Environment Variables (the RABBITMQ_URL) are perfectly mapped. The connection between the Order-Service and the RabbitMQ fails to complete the initial handshake in a cloud environment. This proves the Azure network is fully functional, but the connection is not working.
 ---
 
 ## Links to the three service repositories
