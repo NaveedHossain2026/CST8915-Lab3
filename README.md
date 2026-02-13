@@ -16,18 +16,19 @@
 
 ## Reflection Questions
 
-### What changes did you make to the order-service and product-service to comply with the Configurations and Backing Services factors of the 12-Factor App methodology?
+### What challenges did you encounter when configuring environment variables in the GitHub Actions workflow?
 
-To comply with Factor 3 (Config), I removed all hard-coded IP addresses, ports, and credentials from the source code of both the order-service and product-service and replaced them with environment variables managed by the .env files. For Factor 4 (Backing Services), I ensured that both services treat RabbitMQ as an attached resource. This means the app connects to them using a URL provided by the configuration rather than the app assuming they are in the local system.
+The biggest challenge was syncing the environment variables between GitHub and the build process. Because Static Web Apps integrate the API URLs into the code during the build, any typo or missing secret in the GitHub .yml file would cause the frontend to break. I had to carefully ensure that the names in GitHub exactly match the variables in my code. It required constant checking of the GitHub Action logs to confirm the values were being injected correctly before the app was deployed to Azure.
 
 
-### Why is it important to use environment variables instead of hard-coding configurations in your application?
+### How does deploying microservices on Azure Web App Service differ from running them locally?
 
-Environment variables are used to keep the code and configuration separate, which is important for security and flexibility. It makes sure that sensitive data (like passwords) is never saved in a version control system (GitHub) where it is viewable to others. Additionally, it makes the application portable. The same code can be deployed to different environments just by changing the external variables, rather than manually rewriting lines of code for every new deployment.
+Running microservices locally uses a developer's own hardware for development and testing within a simplified, low-scale environment. Running the microservice on Azure uses a managed cloud environment with built-in features like automatic scaling, load balancing, high availability, and monitoring. Therefore local deployment focuses on development speed while Azure deployment ensures microservices remain secure, monitored, and resilient at scale.
 
-### Why is it important to have separate repositories for each microservice? How does this help maintain independence and scalability of each service?
 
-Maintaining separate repositories for each microservice follows Factor 1 (One codebase, one app), which ensures that each service has its own independent version history and deployment lifecycle.  This prevents monolithic dependencies where a change in one service could accidentally break another. It also allows independent scalability, where one service can be updated or scaled without needing to update or redeploy another service.
+### Why is it important to use environment variables for configurations in a cloud environment?
+
+Using environment variables is important because it separates the application code from the configuration. By removing hardcoded secrets like database credentials from the source code, the risk of exposing sensitive data is significantly reduced. It also makes the application portable. The same code can be deployed to different environments just by changing the external variables, rather than manually rewriting lines of code for every new deployment.
 
 ---
 
