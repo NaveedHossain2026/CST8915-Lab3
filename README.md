@@ -23,7 +23,7 @@ The biggest challenge was syncing the environment variables between GitHub and t
 
 ### How does deploying microservices on Azure Web App Service differ from running them locally?
 
-Running microservices locally uses a developer's own hardware for development and testing within a simplified, low-scale environment. Running the microservice on Azure uses a managed cloud environment with built-in features like automatic scaling, load balancing, high availability, and monitoring. Therefore local deployment focuses on development speed while Azure deployment ensures microservices remain secure, monitored, and resilient at scale.
+Running microservices locally uses a developer's own hardware for development and testing within a simplified, low-scale environment. Running microservices on Azure uses a managed cloud environment with built-in features like automatic scaling, load balancing, high availability, and monitoring. Therefore, local deployment focuses on development speed while Azure deployment ensures microservices remain secure, monitored, and resilient at scale.
 
 
 ### Why is it important to use environment variables for configurations in a cloud environment?
