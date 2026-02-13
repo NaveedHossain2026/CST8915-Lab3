@@ -51,3 +51,4 @@ https://github.com/NaveedHossain2026/store-front
 ## Acknowledgments
 
 I used Gemini to troubleshoot errors and resolve technical blockers during the lab.
+The Rust product-service was rewritten in Python with the assistance of Gemini AI
