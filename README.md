@@ -32,7 +32,7 @@ Using environment variables is important because it separates the application co
 
 ---
 
-## Technical error ( order-service does not work)
+## Technical error (order-service is not working)
 
 The application architecture is fully deployed on Azure, and all individual components (Static Web App, Web App Services, and RabbitMQ VM) are running. However, the Order Service returns a 500 Internal Server Error when it tries to communicate with RabbitMQ. I verified that Azure’s Network Security Group has Port 5672 open, and I used the Kudu console to confirm that the Environment Variables are perfectly mapped. The connection between the Order-Service and the RabbitMQ fails to complete the initial handshake in a cloud environment. This proves the Azure network is fully functional, but the connection is not working.
 
